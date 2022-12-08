@@ -1,0 +1,77 @@
+/*
+ Color Palette: Haunted
+      dark eggplant: #140214
+      medium eggplant: #251533
+      stone: #8f7d6f
+      black pearl: #171a12
+ */
+
+body {
+    background-color: #140214;
+    color: #8f7d6f;
+}
+
+button {
+    background-color: #140214;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    padding: 1px;
+}
+
+#game-body,
+div.location-actions {
+    margin: 20px;
+    display: block;
+    float: left;
+}
+
+img.location-action-img {
+    height: 100px;
+}
+
+button.location-action-button {
+    transition: transform .2s;
+    display: block;
+    float: right;
+    margin: 5px;
+}
+
+button.location-action-button:hover {
+    transform: scale(1.5) !important;
+}
+
+#mobile-phone-text-button {
+    width: 400px;
+    background-color: #171a12;
+    color: #8f7d6f;
+    padding: 15px 32px;
+    text-align: center;
+    margin: 4px 2px;
+}
+
+button.location-option-text-button {
+    background-color: #251533;
+    color: #8f7d6f;
+    padding: 15px 32px;
+    text-align: center;
+    margin: 4px 2px;
+}
+
+button.location-option-text-button:hover {
+    transform: scale(1.5) !important;
+}
+
+#mobile-phone-text-button:hover {
+    transform: scale(1.5) !important;
+}
+
+#game-description {}
+
+#debug {
+    background-color: #251533;
+}
+
+.debug-span {
+    margin-left: 20px;
+}

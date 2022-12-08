@@ -1,221 +1,15 @@
 <!DOCTYPE html>
 <html>
-<title>Online HTML Editor</title>
-
 <head>
-    <style>
-        /*
-     Color Palette: Haunted
-      	dark eggplant: #140214
-      	medium eggplant: #251533
-      	stone: #8f7d6f
-      	black pearl: #171a12
-     */
-
-        body {
-            background-color: #140214;
-            color: #8f7d6f;
-        }
-
-        button {
-            background-color: #140214;
-            border: none;
-            display: inline-block;
-            cursor: pointer;
-            padding: 1px;
-        }
-
-        #game-body,
-        div.location-actions {
-            margin: 20px;
-            display: block;
-            float: left;
-        }
-
-        img.location-action-img {
-            height: 100px;
-        }
-
-        button.location-action-button {
-            transition: transform .2s;
-            display: block;
-            float: right;
-            margin: 5px;
-        }
-
-        button.location-action-button:hover {
-            transform: scale(1.5) !important;
-        }
-
-        #mobile-phone-text-button {
-            width: 400px;
-            background-color: #171a12;
-            color: #8f7d6f;
-            padding: 15px 32px;
-            text-align: center;
-            margin: 4px 2px;
-        }
-
-        button.location-option-text-button {
-            background-color: #251533;
-            color: #8f7d6f;
-            padding: 15px 32px;
-            text-align: center;
-            margin: 4px 2px;
-        }
-
-        button.location-option-text-button:hover {
-            transform: scale(1.5) !important;
-        }
-
-        #mobile-phone-text-button:hover {
-            transform: scale(1.5) !important;
-        }
-
-        #game-description {}
-
-        #debug {
-            background-color: #251533;
-        }
-
-        .debug-span {
-            margin-left: 20px;
-        }
-    </style>
+    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="time.js"></script>
+    <script type="text/javascript" src="elisa-context.js"></script>
+    <script type="text/javascript" src="player-context.js"></script>
+    <script type="text/javascript" src="locations.js"></script>
+    <script type="text/javascript" src="phone.js"></script>
+    <script type="text/javascript" src="debug.js"></script>
+    <link rel="stylesheet" href="style.css">
     <script>
-        window.ELISA = {
-            name: "Elisa",
-            STARTTIME: (new Date("Jan 31, 2013 22:37:25")).getTime(),
-            ENDTIME: (new Date("Jan 31, 2013 23:59:59")).getTime(),
-            currentTime: undefined,
-            timeLeft: undefined
-        };
-
-        window.AllLocations = {
-            HOMEROOM: {
-                name: "homeroom",
-                img: "https://drive.google.com/uc?export=view&id=1-c0De3Ih5YICG1tDZVwrvMMLADfqxiPO",
-                actions: [{
-                    name: "drawer",
-                    img: "https://drive.google.com/uc?export=view&id=1kPsUyaDB2NcWkzgRHxFr-dNUOcMLKmPq"
-                },
-                    {
-                        name: "bed",
-                        img: "https://drive.google.com/uc?export=view&id=10r2t3VPv1qdxlYe9s8l0f4xlQv7lN_l1"
-                    },
-                    {
-                        name: "sink",
-                        img: "https://drive.google.com/uc?export=view&id=1iOwefzeV8NFo8_Uw45p_DZdw0o7TCGkI"
-                    },
-                    {
-                        name: "luggage",
-                        img: "https://drive.google.com/uc?export=view&id=1Ovvmyh7nyVvWxOSgMwNgtUZ43O9rDDMK"
-                    },
-                    {
-                        name: "window",
-                        img: "https://drive.google.com/uc?export=view&id=1iq0m5ZIJO2gmbzK6PEmBiNB0fGc_0v-c"
-                    },
-                ],
-                nextLocations: [{
-                    name: "hallway",
-                    label: "Exit room"
-                }]
-            },
-            HALLWAY: {
-                name: "hallway",
-                img: "https://drive.google.com/uc?export=view&id=1ecVgQyTcu9rVsdbsQLMFAGxt9uGSvCkS",
-                nextLocations: [{
-                    name: "homeroom",
-                    label: "Back to your hotel room"
-                },
-                    {
-                        name: "elevator lobby",
-                        label: "Go to elevators"
-                    }
-                ],
-                actions: []
-            },
-            ELEVATOR_LOBBY: {
-                name: "elevator lobby",
-                img: "https://drive.google.com/uc?export=view&id=1I9-OF5IGwxPRopp-osR7GMgEengTUWe6",
-                nextLocations: [{
-                    name: "hallway",
-                    label: "Back to hallway"
-                },
-                    {
-                        name: "elevator",
-                        label: "Use elevator"
-                    },
-                    {
-                        name: "stairs",
-                        label: "Use stairs"
-                    }
-                ],
-                actions: []
-            },
-            ELEVATOR: {
-                name: "elevator",
-                img: "https://drive.google.com/uc?export=view&id=1FPyhoazWBgkEwULJpfCmENEzyKEhlBTn",
-                nextLocations: [
-                    {
-                        name: "elevator lobby",
-                        label: "Back to your floor"
-                    },
-                    {
-                        name: "ground floor lobby",
-                        label: "Down to ground floor"
-                    }
-                ],
-                actions: []
-            },
-            STAIRS: {
-                name: "stairs",
-                img: "https://drive.google.com/uc?export=view&id=1pYXhW-vngZd2fbuiWbh3JEMoMSsi_CxT",
-                nextLocations: [{
-                    name: "elevator lobby",
-                    label: "Back to your floor"
-                },
-                    {
-                        name: "ground floor lobby",
-                        label: "Down to ground floor"
-                    }
-                ],
-                actions: []
-            },
-            GROUND_FLOOR_LOBBY: {
-                name: "ground floor lobby",
-                img: "https://drive.google.com/uc?export=view&id=1Q6EJc6M1cdNSfzYuVcAmXO6RrcHl53Sx",
-                nextLocations: [
-                    {
-                        name: "elevator",
-                        label: "Use elevator"
-                    },
-                    {
-                        name: "stairs",
-                        label: "Use stairs"
-                    }
-                ],
-                actions: []
-            },
-        };
-
-        window.PLAYER = {
-            location: undefined,
-            STARTTIME: undefined,
-            currentRealTime: undefined,
-            timeInGame: 0
-        };
-
-        // window.timer = new Timer();
-
-        window.PHONE = {
-            displayDate: "Jan 31, 2013",
-            displayTime: undefined,
-            battery: 50,
-            // TODO: test battery natural degradation
-            batteryDegradationVelocity: 1 / 1000, //default natural degradation: 1% per 1 min
-        };
-
         function init() {
             hidePhone();
             goTo(window.AllLocations.HOMEROOM);
@@ -223,97 +17,7 @@
             window.PLAYER.currentRealTime = Date.now();
             window.ELISA.currentTime = window.ELISA.STARTTIME;
             // TODO: add reset button that works properly without reloading page
-            // clearInterval(window.timer);
-            // window.timer = setInterval(timer, 1000);
             setInterval(timer, 1000);
-        }
-
-        function takePhone() {
-            document.getElementById("game-body").style.display = "none";
-            document.getElementById("location-actions").style.display = "none";
-            document.getElementById("phone").style.display = "block";
-        }
-
-        function hidePhone() {
-            document.getElementById("game-body").style.display = "block";
-            document.getElementById("location-actions").style.display = "block";
-            document.getElementById("phone").style.display = "none";
-        }
-
-        // TODO: switch - case
-        function getLocationByName(name) {
-            if (name == "homeroom") {
-                return window.AllLocations.HOMEROOM;
-            }
-            if (name == "hallway") {
-                return window.AllLocations.HALLWAY;
-            }
-            if (name == "elevator lobby") {
-                return window.AllLocations.ELEVATOR_LOBBY;
-            }
-            if (name == "elevator") {
-                return window.AllLocations.ELEVATOR;
-            }
-            if (name == "stairs") {
-                return window.AllLocations.STAIRS;
-            }
-            if (name == "ground floor lobby") {
-                return window.AllLocations.GROUND_FLOOR_LOBBY;
-            }
-            // TODO: error handling
-            return window.AllLocations.HOMEROOM;
-
-        }
-
-        function goTo(location) {
-            window.PLAYER.location = location;
-            document.getElementById("location-actions").innerHTML = "";
-            document.getElementById("game-main-img").src = location.img;
-            location.actions.forEach((action) => {
-                let actionButton = document.createElement("button");
-                let actionImage = document.createElement("img");
-                actionImage.src = action.img;
-                actionImage.className = "location-action-img";
-                actionButton.type = "image";
-                actionButton.name = action.name;
-                actionButton.appendChild(actionImage);
-                actionButton.className = "location-action-button";
-                document.getElementById("location-actions").appendChild(actionButton);
-            });
-            document.getElementById("next-locations").innerHTML = "";
-            location.nextLocations.forEach((locationOption) => {
-                let locationOptionButton = document.createElement("button");
-                locationOptionButton.innerHTML = locationOption.label;
-                locationOptionButton.addEventListener("click", () => goTo(getLocationByName(locationOption.name)));
-                locationOptionButton.className = "location-option-text-button";
-                document.getElementById("next-locations").appendChild(locationOptionButton);
-            });
-        }
-
-        // calendar
-        function timer() {
-            window.PLAYER.currentRealTime = Date.now();
-            let diffMillis = window.PLAYER.currentRealTime - window.PLAYER.STARTTIME;
-            window.PLAYER.timeInGame = Math.floor(diffMillis / 1000);
-            window.ELISA.currentTime = new Date(window.ELISA.STARTTIME + diffMillis);
-            window.PHONE.displayTime = window.ELISA.currentTime;
-            window.PHONE.battery = window.PHONE.battery - window.PHONE.batteryDegradationVelocity;
-            window.ELISA.timeLeft = Math.floor((new Date(window.ELISA.ENDTIME) - new Date(window.ELISA.currentTime)) / 60000);
-            updateDebug();
-        }
-
-        function formatDate(dateObj) {
-            return dateObj.getHours() + ":" + dateObj.getMinutes() + ":" + dateObj.getSeconds();
-        }
-
-        // debug
-        function updateDebug() {
-            document.getElementById("debug-player-location").innerHTML = window.PLAYER.location.name;
-            document.getElementById("debug-player-currentdate").innerHTML = window.PLAYER.timeInGame + " sec in game (" +
-                formatDate(new Date(window.PLAYER.currentRealTime)) + ")";
-            document.getElementById("debug-elisa-currentdate").innerHTML = formatDate(window.ELISA.currentTime) + " (" + window.ELISA.timeLeft + " min left)";
-            document.getElementById("debug-phone-currentdate").innerHTML = window.PHONE.displayDate + "&nbsp&nbsp" + formatDate(window.PHONE.displayTime);
-            document.getElementById("debug-phone-battery").innerHTML = Math.floor(window.PHONE.battery) + "% battery";
         }
     </script>
 </head>
@@ -345,7 +49,8 @@
     <div id='next-locations'>next</div>
     <div>
         <button id="mobile-phone-text-button" onclick=
-                'takePhone();'>TAKE PHONE</button>
+                'takePhone();'>TAKE PHONE
+        </button>
     </div>
 </div>
 <div id='location-actions'>
@@ -355,7 +60,9 @@
         <div id="phone-menu">
             <table>
                 <tr>
-                    <td id="phone-menu-calls"><img src="https://drive.google.com/uc?export=view&id=1MKW2IfGdhxmHU45DFhWlWU6-4J_pJd9t" height=100></td>
+                    <td id="phone-menu-calls">
+                        <img src=window.images.phone.calls
+                             height=100></td>
                     <td id="phone-menu-contacts">Contacts</td>
                     <td></td>
                 </tr>
@@ -368,8 +75,9 @@
         </div>
         <div id="phone-call">
         </div>
-        <button id="mobile-phone-text-button" onclick=
-                'hidePhone();'>HIDE PHONE</button>
+        <button id="mobile-phone-text-button-1" onclick=
+                'hidePhone();'>HIDE PHONE
+        </button>
 
     </div>
 </div>
