@@ -14,3 +14,8 @@
 .phone-menu-button {
     height: 100px;
 }
+
+.person-icon {
+    border-radius: 25px;
+    width: 180px;
+}

@@ -28,6 +28,10 @@
 </head>
 
 <body>
+
+<!----------------------------------------------------------------------------------->
+<!-----------------------------DEBUG------------------------------------------------->
+<!----------------------------------------------------------------------------------->
 <div id="debug">
     <div id="debug-player">
         <span>Player:</span>
@@ -43,30 +47,42 @@
         <span class='debug-span' id="debug-phone-current-date"></span>
         <span class='debug-span' id="debug-phone-battery"></span>
     </div>
-    <!--<button onclick='init();'>Reset</button>-->
 </div>
+<!----------------------------------------------------------------------------------->
+<!-----------------------------GAME/LOCATIONS/INTERACTIONS--------------------------->
+<!----------------------------------------------------------------------------------->
 <div id='game-body'>
     <h1 id='game-header'></h1>
     <div id='game-description'></div>
-    <div>
-        <div id='game-main-img'></div>
-    </div>
-    <div id='next-locations'>next</div>
+    <table>
+        <tr>
+            <td id='game-main-img'></td>
+            <td id='location-actions'></td>
+        </tr>
+        <tr>
+            <td id='next-locations'></td>
+            <td></td>
+        </tr>
+    </table>
+
     <div>
         <button class="mobile-phone-text-button" onclick=
                 'takePhone();'>TAKE PHONE
         </button>
     </div>
 </div>
-<div id='location-actions'>
-</div>
+
+<!----------------------------------------------------------------------------------->
+<!-----------------------------PHONE------------------------------------------------->
+<!----------------------------------------------------------------------------------->
 <div id='phone'>
     <div>
+        <!-----------------------------MAIN MENU------------------------------------->
         <div id="phone-menu">
             <table>
                 <tr>
                     <td id="phone-menu-calls">
-                        <img src="assets/phone/calls.png" class="phone-menu-button" alt="calls">
+                        <img src="assets/phone/calls.png" class="phone-menu-button">
                     </td>
                     <td></td>
                     <td></td>
@@ -78,10 +94,26 @@
                 </tr>
             </table>
         </div>
+        <!---------------------------CALLING SCREEN----------------------------------->
         <div id="phone-call">
+            <table>
+                <tr>
+                    <td><img src="assets/phone/mom.png" class="person-icon"></td>
+                </tr>
+                <tr>
+                    <td id="calling-person-name">Mom</td>
+                </tr>
+                <tr>
+                    <td>Calling...</td>
+                </tr>
+            </table>
+            <div></div>
         </div>
-        <button class="mobile-phone-text-button" onclick=
-                'hidePhone();'>HIDE PHONE
+        <!------------------------------------------------------------------------------------>
+        <!------------------------------------------------------------------------------------>
+        <!------------------------------------------------------------------------------------>
+        <button class="mobile-phone-text-button" onclick='hidePhone();'>
+            HIDE PHONE
         </button>
 
     </div>

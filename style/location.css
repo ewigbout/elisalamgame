@@ -4,8 +4,9 @@ div.location-actions {
     float: left;
 }
 
-.location-action-img {
+img.location-action-img {
     height: 100px;
+    border-radius: 10px;
 }
 
 button.location-action-button {
