@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <title>Elisa Lam game prototype</title>
     <script type="text/javascript" src="javascript/settings.js"></script>
     <script type="text/javascript" src="javascript/time.js"></script>
     <script type="text/javascript" src="javascript/elisa-context.js"></script>
     <script type="text/javascript" src="javascript/player-context.js"></script>
+    <script type="text/javascript" src="javascript/location-actions.js"></script>
     <script type="text/javascript" src="javascript/locations.js"></script>
     <script type="text/javascript" src="javascript/phone.js"></script>
     <script type="text/javascript" src="javascript/debug.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/location.css">
+    <link rel="stylesheet" href="style/phone.css">
+    <link rel="stylesheet" href="style/debug.css">
     <script>
         function init() {
             hidePhone();
             goTo(window.AllLocations.HOMEROOM);
             window.PLAYER.STARTTIME = Date.now();
             window.PLAYER.currentRealTime = Date.now();
-            window.ELISA.currentTime = window.ELISA.STARTTIME;
+            window.ELISA.currentTime = window.ELISA.start_time;
             // TODO: add reset button that works properly without reloading page
             setInterval(timer, 1000);
         }
@@ -26,16 +31,16 @@
 <div id="debug">
     <div id="debug-player">
         <span>Player:</span>
-        <span class='debug-span' id="debug-player-currentdate"></span>
+        <span class='debug-span' id="debug-player-current-date"></span>
         <span class='debug-span' id="debug-player-location"></span>
     </div>
     <div id="debug-elisa">
         <span>Elisa:</span>
-        <span class='debug-span' id="debug-elisa-currentdate"></span>
+        <span class='debug-span' id="debug-elisa-current-date"></span>
     </div>
     <div id="debug-phone">
         <span>Phone:</span>
-        <span class='debug-span' id="debug-phone-currentdate"></span>
+        <span class='debug-span' id="debug-phone-current-date"></span>
         <span class='debug-span' id="debug-phone-battery"></span>
     </div>
     <!--<button onclick='init();'>Reset</button>-->
@@ -44,11 +49,11 @@
     <h1 id='game-header'></h1>
     <div id='game-description'></div>
     <div>
-        <img id='game-main-img' height=400px>
+        <div id='game-main-img'></div>
     </div>
     <div id='next-locations'>next</div>
     <div>
-        <button id="mobile-phone-text-button" onclick=
+        <button class="mobile-phone-text-button" onclick=
                 'takePhone();'>TAKE PHONE
         </button>
     </div>
@@ -61,9 +66,9 @@
             <table>
                 <tr>
                     <td id="phone-menu-calls">
-                        <img src=window.images.phone.calls
-                             height=100></td>
-                    <td id="phone-menu-contacts">Contacts</td>
+                        <img src="assets/phone/calls.png" class="phone-menu-button" alt="calls">
+                    </td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -75,7 +80,7 @@
         </div>
         <div id="phone-call">
         </div>
-        <button id="mobile-phone-text-button-1" onclick=
+        <button class="mobile-phone-text-button" onclick=
                 'hidePhone();'>HIDE PHONE
         </button>
 

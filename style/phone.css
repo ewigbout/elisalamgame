@@ -1,0 +1,16 @@
+.mobile-phone-text-button {
+    width: 400px;
+    background-color: #171a12;
+    color: #8f7d6f;
+    padding: 15px 32px;
+    text-align: center;
+    margin: 4px 2px;
+}
+
+.mobile-phone-text-button:hover {
+    transform: scale(1.5) !important;
+}
+
+.phone-menu-button {
+    height: 100px;
+}

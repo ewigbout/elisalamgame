@@ -1,0 +1,29 @@
+/*
+ Color Palette: Haunted
+      dark eggplant: #140214
+      medium eggplant: #251533
+      stone: #8f7d6f
+      black pearl: #171a12
+ */
+
+body {
+    background-color: #140214;
+    color: #8f7d6f;
+}
+
+button {
+    background-color: #140214;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    padding: 1px;
+}
+
+#game-body {
+    margin: 20px;
+    display: block;
+    float: left;
+}
+
+#game-description {
+}

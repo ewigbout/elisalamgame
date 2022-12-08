@@ -1,0 +1,32 @@
+div.location-actions {
+    margin: 20px;
+    display: block;
+    float: left;
+}
+
+.location-action-img {
+    height: 100px;
+}
+
+button.location-action-button {
+    transition: transform .2s;
+    display: block;
+    float: right;
+    margin: 5px;
+}
+
+button.location-action-button:hover {
+    transform: scale(1.5) !important;
+}
+
+button.location-option-text-button {
+    background-color: #251533;
+    color: #8f7d6f;
+    padding: 15px 32px;
+    text-align: center;
+    margin: 4px 2px;
+}
+
+button.location-option-text-button:hover {
+    transform: scale(1.5) !important;
+}

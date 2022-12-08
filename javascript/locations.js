@@ -2,25 +2,26 @@ window.AllLocations = {
     HOMEROOM: {
         name: "homeroom",
         img: window.images.locations.room,
-        actions: [{
-            name: "drawer",
-            img: window.images.actionable.nightstand
-        },
+        actions: [
+            {
+                name: "drawer",
+                img: window.images.actionable.room.nightstand
+            },
             {
                 name: "bed",
-                img: window.images.actionable.pillow
+                img: window.images.actionable.room.pillow
             },
             {
                 name: "sink",
-                img: window.images.actionable.sink
+                img: window.images.actionable.room.sink
             },
             {
                 name: "luggage",
-                img: window.images.actionable.bag
+                img: window.images.actionable.room.bag
             },
             {
                 name: "window",
-                img: window.images.actionable.window
+                img: window.images.actionable.room.window
             },
         ],
         nextLocations: [{
@@ -109,22 +110,22 @@ window.AllLocations = {
 
 // TODO: switch - case
 function getLocationByName(name) {
-    if (name == "homeroom") {
+    if (name === "homeroom") {
         return window.AllLocations.HOMEROOM;
     }
-    if (name == "hallway") {
+    if (name === "hallway") {
         return window.AllLocations.HALLWAY;
     }
-    if (name == "elevator lobby") {
+    if (name === "elevator lobby") {
         return window.AllLocations.ELEVATOR_LOBBY;
     }
-    if (name == "elevator") {
+    if (name === "elevator") {
         return window.AllLocations.ELEVATOR;
     }
-    if (name == "stairs") {
+    if (name === "stairs") {
         return window.AllLocations.STAIRS;
     }
-    if (name == "ground floor lobby") {
+    if (name === "ground floor lobby") {
         return window.AllLocations.GROUND_FLOOR_LOBBY;
     }
     // TODO: error handling
@@ -135,18 +136,13 @@ function getLocationByName(name) {
 function goTo(location) {
     window.PLAYER.location = location;
     document.getElementById("location-actions").innerHTML = "";
-    document.getElementById("game-main-img").src = location.img;
-    location.actions.forEach((action) => {
-        let actionButton = document.createElement("button");
-        let actionImage = document.createElement("img");
-        actionImage.src = action.img;
-        actionImage.className = "location-action-img";
-        actionButton.type = "image";
-        actionButton.name = action.name;
-        actionButton.appendChild(actionImage);
-        actionButton.className = "location-action-button";
-        document.getElementById("location-actions").appendChild(actionButton);
-    });
+    // TODO: will it create a DOM element every time?
+    let locationImg = document.createElement("img");
+    locationImg.src = location.img;
+    locationImg.height = 400;
+    document.getElementById("game-main-img").innerHTML = "";
+    document.getElementById("game-main-img").appendChild(locationImg);
+    location.actions.forEach(loadLocationAction);
     document.getElementById("next-locations").innerHTML = "";
     location.nextLocations.forEach((locationOption) => {
         let locationOptionButton = document.createElement("button");
