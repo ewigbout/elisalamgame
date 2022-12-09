@@ -1,0 +1,11 @@
+button.dialog-option-button {
+    background-color: #171a12;
+    color: #8f7d6f;
+    padding: 15px 32px;
+    text-align: center;
+    margin: 4px 2px;
+}
+
+button.dialog-option-button:hover {
+    transform: scale(1.5) !important;
+}

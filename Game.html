@@ -10,13 +10,22 @@
     <script type="text/javascript" src="javascript/locations.js"></script>
     <script type="text/javascript" src="javascript/phone.js"></script>
     <script type="text/javascript" src="javascript/debug.js"></script>
+    <script type="text/javascript" src="javascript/dialogs.js"></script>
+    <script type="text/javascript" src="javascript/story.js"></script>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/location.css">
     <link rel="stylesheet" href="style/phone.css">
     <link rel="stylesheet" href="style/debug.css">
+    <link rel="stylesheet" href="style/dialogs.css">
     <script>
         function init() {
             takePhone();
+            call(    {
+                name: "Mom",
+                img: "assets/phone/mom.png",
+                in_contact_list: true
+            });
+            loadMomDialog(0);
             goTo(window.AllLocations.HOMEROOM);
             window.PLAYER.STARTTIME = Date.now();
             window.PLAYER.currentRealTime = Date.now();
@@ -100,7 +109,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                        <div class="call_button" type="image" id="drop-the-call-contacts" onclick="showMainMenu()">
+                                        <div class="call_button" type="image" id="drop-the-call-contacts" onclick="endCall()">
                                             <img src="assets/phone/end_call.png" class="call_button" >
                                         </div>
                                     </td>
@@ -155,7 +164,7 @@
                                         <div type="image" class="call_button" id="call-number" onclick="callNumber()">
                                             <img src="assets/phone/call.png" class="call_button" >
                                         </div>
-                                        <div class="call_button" type="image" id="drop-the-call" onclick="showMainMenu()">
+                                        <div class="call_button" type="image" id="drop-the-call" onclick="endCall()">
                                             <img src="assets/phone/end_call.png" class="call_button" >
                                         </div>
                                     </td>
@@ -205,7 +214,9 @@
 <!-----------------------------DIALOGS----------------------------------------------->
 <!----------------------------------------------------------------------------------->
 <div id="dialogs">
-        dialogs
+        <table id="dialogs-table">
+        </table>
+    <div id="dialogs-options"></div>
 </div>
 
 <script>

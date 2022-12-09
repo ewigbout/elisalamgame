@@ -6,28 +6,22 @@ window.PHONE = {
     batteryDegradationVelocity: 1 / 1000, //default natural degradation: 1% per 1 min
 };
 
-window.CONTACTS = [
-    {
+// TODO: MOM = {} etc
+window.CONTACTS = {
+    MARK: {
         name: "Mark",
         img: "assets/phone/unknown_caller.png",
-        in_contact_list: true
     },
-    {
+    MOM: {
         name: "Mom",
         img: "assets/phone/mom.png",
-        in_contact_list: true
     },
-    {
-        name: "Sister",
-        img: "assets/phone/unknown_caller.png",
-        in_contact_list: true
-    },
-    {
-        name: "911",
-        img: "assets/phone/unknown_caller.png",
-        in_contact_list: false
-    },
-]
+    SISTER:
+        {
+            name: "Sister",
+            img: "assets/phone/unknown_caller.png"
+        }
+}
 
 window.dial_number = "";
 
@@ -42,6 +36,11 @@ function showContacts() {
     loadContacts();
     hideEverything();
     document.getElementById("contacts").style.display = "block";
+}
+
+function endCall() {
+    clearDialog();
+    showMainMenu();
 }
 
 function showMainMenu() {
@@ -59,7 +58,7 @@ function showDialingScreen() {
 }
 
 function pressNumberButton(n) {
-    window.dial_number =  window.dial_number + n;
+    window.dial_number = window.dial_number + n;
     document.getElementById("dial-number").innerHTML = window.dial_number;
 }
 
@@ -71,7 +70,7 @@ function call(person) {
 }
 
 function callNumber() {
-    if (window.dial_number==="") {
+    if (window.dial_number === "") {
         return;
     }
     hideEverything();
@@ -81,6 +80,7 @@ function callNumber() {
     document.getElementById("calling-person-name").innerHTML = window.dial_number;
     document.getElementById("calling-person-img").src = "assets/phone/unknown_caller.png";
 }
+
 function takePhone() {
     document.getElementById("mobile-phone-text-button").style.display = "none";
     document.getElementById("phone").style.display = "block";
@@ -94,31 +94,32 @@ function hidePhone() {
 
 function loadContacts() {
     let contactsTable = document.getElementById("contacts-table");
-    contactsTable.innerHTML="";
+    contactsTable.innerHTML = "";
+    loadContact(window.CONTACTS.MOM, callMom);
+    loadContact(window.CONTACTS.MARK, callMark);
+    loadContact(window.CONTACTS.SISTER, callSister);
+}
 
-    window.CONTACTS
-        .filter((contact) => {return contact.in_contact_list})
-        .forEach((contact) => {
-        let contactRow = document.createElement("tr");
-        contactRow.className = "contacts-row";
+function loadContact(contact, callback) {
+    let contactsTable = document.getElementById("contacts-table");
+    let contactRow = document.createElement("tr");
+    contactRow.className = "contacts-row";
 
-        let contactImage = document.createElement("img");
-        contactImage.src=contact.img;
-        contactImage.className = "person-icon-small";
+    let contactImage = document.createElement("img");
+    contactImage.src = contact.img;
+    contactImage.className = "person-icon-small";
 
-        let imgTd = document.createElement("td");
-        imgTd.className = "contacts-img";
-        imgTd.appendChild(contactImage);
+    let imgTd = document.createElement("td");
+    imgTd.className = "contacts-img";
+    imgTd.appendChild(contactImage);
 
-        let nameTd = document.createElement("td");
-        nameTd.className = "contacts-name";
-        nameTd.innerHTML = contact.name;
+    let nameTd = document.createElement("td");
+    nameTd.className = "contacts-name";
+    nameTd.innerHTML = contact.name;
 
-        contactRow.appendChild(imgTd);
-        contactRow.appendChild(nameTd);
-        contactRow.onclick = () => call(contact);
+    contactRow.appendChild(imgTd);
+    contactRow.appendChild(nameTd);
+    contactRow.onclick = callback;
 
-        contactsTable.appendChild(contactRow);
-    })
-
+    contactsTable.appendChild(contactRow);
 }
