@@ -30,3 +30,7 @@ button.location-option-text-button {
 button.location-option-text-button:hover {
     transform: scale(1.5) !important;
 }
+
+#next-locations {
+    width: 200px;
+}

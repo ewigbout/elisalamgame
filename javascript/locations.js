@@ -34,7 +34,7 @@ window.AllLocations = {
         img: window.images.locations.hallway,
         nextLocations: [{
             name: "homeroom",
-            label: "Back to your hotel room"
+            label: "<<"
         },
             {
                 name: "elevator lobby",
@@ -48,7 +48,7 @@ window.AllLocations = {
         img: window.images.locations.elevators_lobby,
         nextLocations: [{
             name: "hallway",
-            label: "Back to hallway"
+            label: "<<"
         },
             {
                 name: "elevator",
@@ -67,7 +67,7 @@ window.AllLocations = {
         nextLocations: [
             {
                 name: "elevator lobby",
-                label: "Back to your floor"
+                label: "<<"
             },
             {
                 name: "ground floor lobby",
@@ -81,7 +81,7 @@ window.AllLocations = {
         img: window.images.locations.stairs,
         nextLocations: [{
             name: "elevator lobby",
-            label: "Back to your floor"
+            label: "<<"
         },
             {
                 name: "ground floor lobby",
@@ -145,10 +145,14 @@ function goTo(location) {
     location.actions.forEach(loadLocationAction);
     document.getElementById("next-locations").innerHTML = "";
     location.nextLocations.forEach((locationOption) => {
+        let nextLocationTr = document.createElement("tr");
+        let nextLocationTd = document.createElement("td");
         let locationOptionButton = document.createElement("button");
+        nextLocationTd.appendChild(locationOptionButton);
+        nextLocationTr.appendChild(nextLocationTd);
         locationOptionButton.innerHTML = locationOption.label;
         locationOptionButton.addEventListener("click", () => goTo(getLocationByName(locationOption.name)));
         locationOptionButton.className = "location-option-text-button";
-        document.getElementById("next-locations").appendChild(locationOptionButton);
+        document.getElementById("next-locations").appendChild(nextLocationTr);
     });
 }

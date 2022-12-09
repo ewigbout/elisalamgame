@@ -1,24 +1,20 @@
-#mobile-phone-text-button:hover {
-    transform: scale(1.5) !important;
+.phone-menu-button {
+    width: 80px;
 }
 
-.phone-menu-button {
-    height: 100px;
+.phone-menu-button:hover {
+    width: 80px;
+    transform: scale(1.5) !important;
 }
 
 .person-icon {
     border-radius: 25px;
-    width: 180px;
+    width: 120px;
 }
 
 .person-icon-small {
     border-radius: 15px;
     height: 50px;
-}
-
-#contacts{
-    /*height: 390px;*/
-    /*overflow: scroll;*/
 }
 
 .contacts-row {
@@ -40,13 +36,70 @@
     padding: 10px;
     /*margin: 30px;*/
     height: 400px;
-    width: 250px;
+    width: 213px;
 }
 
 #phone-header {
     background-color: #251533;
+    font-size: large;
+}
+
+#hide-phone {
+    background-color: #251533;
+    font-size: large;
+    text-align: center;
+}
+
+#hide-phone:hover  {
+    background-color: #171a12;
 }
 
 #phone-footer {
     background-color: #251533;
+    /*font-size: large;*/
+    text-align: center;
+}
+
+#phone-footer:hover  {
+    background-color: #171a12;
+}
+
+
+#phone-main-menu-button {
+
+}
+
+
+#phone-main-menu-button:hover {
+    background-color: #140214;
+}
+
+#phone-content{
+    height: 300px;
+    width: 200px;
+}
+
+.phone-number-button{
+    border-radius: 25px;
+    background-color: #251533;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.phone-number-button:hover{
+    background-color: #171a12;
+    transform: scale(0.9) !important;
+}
+
+#dial-number{
+    word-break: break-all;
+}
+
+.call_button{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
 }

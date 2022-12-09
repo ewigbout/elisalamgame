@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style/debug.css">
     <script>
         function init() {
-            hidePhone();
+            takePhone();
             goTo(window.AllLocations.HOMEROOM);
             window.PLAYER.STARTTIME = Date.now();
             window.PLAYER.currentRealTime = Date.now();
@@ -56,47 +56,112 @@
             <!----------------------------------------------------------------------------------->
             <table id='phone'>
                 <tr id="phone-header">
-                    <td onclick='hidePhone()'>[Hide]</td>
+                    <td>
+                        <span class='debug-span' id="phone-current-date">DATW</span>
+                        <span class='debug-span' id="phone-time">time</span>
+                        <span class='debug-span' id="phone-battery">battery</span>
+                    </td>
                 </tr>
                 <tr>
                     <td id="phone-content">
                         <!-----------------------------MAIN MENU------------------------------------->
-                        <!--        <div id="phone-menu">-->
-                        <!--            <table>-->
-                        <!--                <tr>-->
-                        <!--                    <td id="phone-menu-calls">-->
-                        <!--                        <img src="assets/phone/calls.png" class="phone-menu-button">-->
-                        <!--                    </td>-->
-                        <!--                    <td></td>-->
-                        <!--                    <td></td>-->
-                        <!--                </tr>-->
-                        <!--                <tr>-->
-                        <!--                    <td></td>-->
-                        <!--                    <td></td>-->
-                        <!--                    <td></td>-->
-                        <!--                </tr>-->
-                        <!--            </table>-->
-                        <!--        </div>-->
+                        <div id="phone-menu">
+                            <table>
+                                <tr>
+                                    <td onclick="showDialingScreen()">
+                                        <img src="assets/phone/calls.png" class="phone-menu-button">
+                                    </td>
+                                    <td onclick="showContacts()">
+                                        <img src="assets/phone/contacts.png" class="phone-menu-button">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                         <!-----------------------------MAIN MENU------------------------------------->
                         <div id="contacts">
                             <table id="contacts-table">
                             </table>
                         </div>
                         <!---------------------------CALLING SCREEN----------------------------------->
-                        <!--        <div id="phone-call">-->
-                        <!--            <table>-->
-                        <!--                <tr class="contacts-row">-->
-                        <!--                    <td><img src="assets/phone/mom.png" class="person-icon"></td>-->
-                        <!--                </tr>-->
-                        <!--                <tr>-->
-                        <!--                    <td id="calling-person-name">Mom</td>-->
-                        <!--                </tr>-->
-                        <!--                <tr class="contacts-row">-->
-                        <!--                    <td>Calling...</td>-->
-                        <!--                </tr>-->
-                        <!--            </table>-->
-                        <!--            <div></div>-->
-                        <!--        </div>-->
+                        <div id="phone-call">
+                            <table>
+                                <tr>
+                                    <td><img id="calling-person-img" src="assets/phone/mom.png" class="person-icon">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="calling-person-name">Mom</td>
+                                </tr>
+                                <tr>
+                                    <td>Calling...</td>
+                                </tr>
+                                <tr>
+                                    <td>XXXXX</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <div class="call_button" type="image" id="drop-the-call-contacts" onclick="showMainMenu()">
+                                            <img src="assets/phone/end_call.png" class="call_button" >
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </table>
+                            <div></div>
+                        </div>
+                        <!---------------------------DIALING SCREEN----------------------------------->
+                        <div id="dialing-screen">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(1)">1</div>
+                                    </td>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(2)">2</div>
+                                    </td>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(3)">3</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(4)">4</div>
+                                    </td>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(5)">5</div>
+                                    </td>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(6)">6</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(7)">7</div>
+                                    </td>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(8)">8</div>
+                                    </td>
+                                    <td>
+                                        <div class="phone-number-button" onclick="pressNumberButton(9)">9</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <div id="dial-number"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center">
+                                        <div type="image" class="call_button" id="call-number" onclick="callNumber()">
+                                            <img src="assets/phone/call.png" class="call_button" >
+                                        </div>
+                                        <div class="call_button" type="image" id="drop-the-call" onclick="showMainMenu()">
+                                            <img src="assets/phone/end_call.png" class="call_button" >
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                         <!------------------------------------------------------------------------------------>
                         <!------------------------------------------------------------------------------------>
                         <!------------------------------------------------------------------------------------>
@@ -104,8 +169,13 @@
                     </td>
                 </tr>
                 <tr id="phone-footer">
-                    <td></td>
+                    <td onclick="showMainMenu()">
+                        <img src="assets/phone/main_menu_button.png" height="30">
+                    </td>
                 </tr>
+<!--                <tr id="hide-phone">-->
+<!--                    <td onclick='hidePhone()'>[Hide]</td>-->
+<!--                </tr>-->
             </table>
 
             <div id="other-actions">
@@ -119,7 +189,9 @@
         <!----------------------------------------------------------------------------------->
         <!-----------------------------GAME/LOCATIONS---------------------------------------->
         <!----------------------------------------------------------------------------------->
-        <td id="next-locations">
+        <td>
+            <table id="next-locations">
+            </table>
         </td>
         <!----------------------------------------------------------------------------------->
         <!-----------------------------GAME INTERACTIONS------------------------------------->
@@ -128,6 +200,13 @@
         </td>
     </tr>
 </table>
+
+<!----------------------------------------------------------------------------------->
+<!-----------------------------DIALOGS----------------------------------------------->
+<!----------------------------------------------------------------------------------->
+<div id="dialogs">
+        dialogs
+</div>
 
 <script>
     init();
