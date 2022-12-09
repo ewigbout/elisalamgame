@@ -14,6 +14,12 @@ window.images = {
             pillow: "assets/actionable/room/pillow.png",
             sink: "assets/actionable/room/sink.png",
             window: "assets/actionable/room/window.png"
+        },
+        hallway: {
+            door: "assets/actionable/hallway/room_N_door.png"
+        },
+        ground_floor: {
+            front_desk: "assets/actionable/ground_floor/front_desk.png"
         }
     },
     phone: {

@@ -51,7 +51,14 @@ window.AllLocations = {
                 label: "Go to elevators"
             }
         ],
-        actions: []
+        actions: [
+            {
+                name: "door_N",
+                img: window.images.actionable.hallway.door,
+                text: "Элизе не очень уютно с такими соседями в отеле",
+                callback: () => {}
+            },
+        ]
     },
     ELEVATOR_LOBBY: {
         name: "elevator lobby",
@@ -113,7 +120,14 @@ window.AllLocations = {
                 label: "Use stairs"
             }
         ],
-        actions: []
+        actions: [
+            {
+                name: "front desk",
+                img: window.images.actionable.ground_floor.front_desk,
+                text: "У front desk никого нет",
+                callback: () => {}
+            },
+        ]
     },
     INTERACT: {
         name: "Interact",
