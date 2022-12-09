@@ -68,8 +68,15 @@ function callMark() {
                 text: "Hi! It's Elisa from the bookstore.",
                 answerCallback: () => {
                     window.MARK.elisaSaidHello = true;
+                    setTimeout(() => markDialogIteration("Hi Elisa!", [{
+                        label: "Heertgertgrtgllo",
+                        text: "ertgrtg.",
+                        answerCallback: () => {
+                            window.MARK.elisaSaidHello = true;
+                        }
+                    }]), window.answer_delay_time * 1000);
                 }
-            }]);
+            }])
             break;
         case "CONFUSED":
             if (window.MARK.callsCount > 4) {

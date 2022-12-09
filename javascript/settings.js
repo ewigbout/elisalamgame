@@ -22,6 +22,8 @@ window.images = {
     }
 }
 
+window.answer_delay_time = 2;
+
 // images from Google Drive
 //     let base_url = "https://drive.google.com/uc?export=view&id=";
 //     window.images.locations = {

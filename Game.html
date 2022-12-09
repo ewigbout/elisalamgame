@@ -28,7 +28,7 @@
             window.PLAYER.currentRealTime = Date.now();
             window.ELISA.currentTime = window.ELISA.start_time;
             // TODO: add reset button that works properly without reloading page
-            // setInterval(timer, 1000);
+            setInterval(timer, 1000);
         }
     </script>
 </head>
@@ -63,7 +63,6 @@
                 <tr id="phone-header">
                     <td>
                         <span class='debug-span' id="phone-current-date">DATW</span>
-                        <span class='debug-span' id="phone-time">time</span>
                         <span class='debug-span' id="phone-battery">battery</span>
                     </td>
                 </tr>
@@ -98,10 +97,10 @@
                                     <td id="calling-person-name">Mom</td>
                                 </tr>
                                 <tr>
-                                    <td>Calling...</td>
+                                    <td id="calling-status"></td>
                                 </tr>
                                 <tr>
-                                    <td>XXXXX</td>
+                                    <td id="calling-timer"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">
