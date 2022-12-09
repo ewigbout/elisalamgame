@@ -4,6 +4,7 @@ window.dialog = {
 }
 
 function refreshDialogHistoryDisplay() {
+    document.getElementById("dialogs-table").innerHTML = "";
     window.dialog.history.forEach((d) => {
         let tr = document.createElement("tr");
         let td = document.createElement("td");
@@ -14,38 +15,41 @@ function refreshDialogHistoryDisplay() {
 }
 
 function refreshDialogOptions() {
+    document.getElementById("dialogs-options").innerHTML = "";
     window.dialog.options.forEach((dialogOption) => {
         let btn = document.createElement("button");
-        btn.innerHTML = dialogOption;
+        btn.innerHTML = dialogOption.label;
         btn.className = "dialog-option-button";
         btn.onclick = () => answer(dialogOption);
         document.getElementById("dialogs-options").appendChild(btn);
     });
 
 }
+
 function answer(dialogOption) {
     window.dialog.history.push({
         name: window.ELISA.name,
-        words: dialogOption
+        words: dialogOption.text
     });
-    refreshDialog();
-}
-function refreshDialog() {
-    document.getElementById("dialogs-table").innerHTML = "";
-    document.getElementById("dialogs-options").innerHTML = "";
+    window.dialog.options = [];
+    dialogOption.answerCallback();
     refreshDialogHistoryDisplay();
-    refreshDialogOptions();
+    document.getElementById("dialogs-options").innerHTML = "";
 }
 
 function clearDialog() {
-    document.getElementById("dialogs-table").innerHTML = "";
+    window.dialog = {
+        history: [],
+        options: []
+    }
     document.getElementById("dialogs-options").innerHTML = "";
+    document.getElementById("dialogs-table").innerHTML = "";
 }
 
-function loadMomDialog(id) {
-    clearDialog();
-    window.dialog.history = window.DIALOGS_HISTORY.MOM.find((thread) => {
-        return thread.id === id;
-    }).history;
-    refreshDialog();
-}
+// function loadMomDialog(id) {
+//     clearDialog();
+//     window.dialog.history = window.DIALOGS_HISTORY.MOM.find((thread) => {
+//         return thread.id === id;
+//     }).history;
+//     refreshDialog();
+// }

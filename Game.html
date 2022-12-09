@@ -5,6 +5,7 @@
     <script type="text/javascript" src="javascript/settings.js"></script>
     <script type="text/javascript" src="javascript/time.js"></script>
     <script type="text/javascript" src="javascript/elisa-context.js"></script>
+    <script type="text/javascript" src="javascript/mark-context.js"></script>
     <script type="text/javascript" src="javascript/player-context.js"></script>
     <script type="text/javascript" src="javascript/location-actions.js"></script>
     <script type="text/javascript" src="javascript/locations.js"></script>
@@ -20,12 +21,7 @@
     <script>
         function init() {
             takePhone();
-            call(    {
-                name: "Mom",
-                img: "assets/phone/mom.png",
-                in_contact_list: true
-            });
-            loadMomDialog(0);
+            callMark();
             goTo(window.AllLocations.HOMEROOM);
             window.PLAYER.STARTTIME = Date.now();
             window.PLAYER.currentRealTime = Date.now();
