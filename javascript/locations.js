@@ -5,23 +5,33 @@ window.AllLocations = {
         actions: [
             {
                 name: "drawer",
-                img: window.images.actionable.room.nightstand
+                img: window.images.actionable.room.nightstand,
+                text: "Все ящики в прикроватной тумбе пусты. Элиза завтра уезжает и уже собрала чемоданы.",
+                callback: () => {window.ELISA.pills.checkedDrawer = true}
             },
             {
                 name: "bed",
-                img: window.images.actionable.room.pillow
+                img: window.images.actionable.room.pillow,
+                text: "Элиза обещала маме принять таблетки перед тем как лечь спать.",
+                callback: () => {}
             },
             {
                 name: "sink",
-                img: window.images.actionable.room.sink
+                img: window.images.actionable.room.sink,
+                text: "Отель самый бюджетный, даже туалет - общий в коридоре. Только раковина есть, и то с грязной водой.",
+                callback: () => {}
             },
             {
                 name: "luggage",
-                img: window.images.actionable.room.bag
+                img: window.images.actionable.room.bag,
+                text: "Элиза еще раз разложила и сложила сумку, но не нашла таблеток",
+                callback: () => {window.ELISA.pills.checkedBag = true}
             },
             {
                 name: "window",
-                img: window.images.actionable.room.window
+                img: window.images.actionable.room.window,
+                text: "Элиза в восторге от Лос-Анджелеса!",
+                callback: () => {}
             },
         ],
         nextLocations: [{
@@ -103,6 +113,12 @@ window.AllLocations = {
                 label: "Use stairs"
             }
         ],
+        actions: []
+    },
+    INTERACT: {
+        name: "Interact",
+        img: undefined,
+        nextLocations: [],
         actions: []
     },
 };
