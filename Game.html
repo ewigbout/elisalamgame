@@ -22,13 +22,12 @@
             window.PLAYER.currentRealTime = Date.now();
             window.ELISA.currentTime = window.ELISA.start_time;
             // TODO: add reset button that works properly without reloading page
-            setInterval(timer, 1000);
+            // setInterval(timer, 1000);
         }
     </script>
 </head>
 
 <body>
-
 <!----------------------------------------------------------------------------------->
 <!-----------------------------DEBUG------------------------------------------------->
 <!----------------------------------------------------------------------------------->
@@ -48,76 +47,88 @@
         <span class='debug-span' id="debug-phone-battery"></span>
     </div>
 </div>
-<!----------------------------------------------------------------------------------->
-<!-----------------------------GAME/LOCATIONS/INTERACTIONS--------------------------->
-<!----------------------------------------------------------------------------------->
-<div id='game-body'>
-    <h1 id='game-header'></h1>
-    <div id='game-description'></div>
-    <table>
-        <tr>
-            <td id='game-main-img'></td>
-            <td id='location-actions'></td>
-        </tr>
-        <tr>
-            <td id='next-locations'></td>
-            <td></td>
-        </tr>
-    </table>
 
-    <div>
-        <button class="mobile-phone-text-button" onclick=
-                'takePhone();'>TAKE PHONE
-        </button>
-    </div>
-</div>
-
-<!----------------------------------------------------------------------------------->
-<!-----------------------------PHONE------------------------------------------------->
-<!----------------------------------------------------------------------------------->
-<div id='phone'>
-    <div>
-        <!-----------------------------MAIN MENU------------------------------------->
-        <div id="phone-menu">
-            <table>
+<table id='game-body'>
+    <tr>
+        <td>
+            <!----------------------------------------------------------------------------------->
+            <!-----------------------------PHONE------------------------------------------------->
+            <!----------------------------------------------------------------------------------->
+            <table id='phone'>
+                <tr id="phone-header">
+                    <td onclick='hidePhone()'>[Hide]</td>
+                </tr>
                 <tr>
-                    <td id="phone-menu-calls">
-                        <img src="assets/phone/calls.png" class="phone-menu-button">
+                    <td id="phone-content">
+                        <!-----------------------------MAIN MENU------------------------------------->
+                        <!--        <div id="phone-menu">-->
+                        <!--            <table>-->
+                        <!--                <tr>-->
+                        <!--                    <td id="phone-menu-calls">-->
+                        <!--                        <img src="assets/phone/calls.png" class="phone-menu-button">-->
+                        <!--                    </td>-->
+                        <!--                    <td></td>-->
+                        <!--                    <td></td>-->
+                        <!--                </tr>-->
+                        <!--                <tr>-->
+                        <!--                    <td></td>-->
+                        <!--                    <td></td>-->
+                        <!--                    <td></td>-->
+                        <!--                </tr>-->
+                        <!--            </table>-->
+                        <!--        </div>-->
+                        <!-----------------------------MAIN MENU------------------------------------->
+                        <div id="contacts">
+                            <table id="contacts-table">
+                            </table>
+                        </div>
+                        <!---------------------------CALLING SCREEN----------------------------------->
+                        <!--        <div id="phone-call">-->
+                        <!--            <table>-->
+                        <!--                <tr class="contacts-row">-->
+                        <!--                    <td><img src="assets/phone/mom.png" class="person-icon"></td>-->
+                        <!--                </tr>-->
+                        <!--                <tr>-->
+                        <!--                    <td id="calling-person-name">Mom</td>-->
+                        <!--                </tr>-->
+                        <!--                <tr class="contacts-row">-->
+                        <!--                    <td>Calling...</td>-->
+                        <!--                </tr>-->
+                        <!--            </table>-->
+                        <!--            <div></div>-->
+                        <!--        </div>-->
+                        <!------------------------------------------------------------------------------------>
+                        <!------------------------------------------------------------------------------------>
+                        <!------------------------------------------------------------------------------------>
+
                     </td>
-                    <td></td>
-                    <td></td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
+                <tr id="phone-footer">
                     <td></td>
                 </tr>
             </table>
-        </div>
-        <!---------------------------CALLING SCREEN----------------------------------->
-        <div id="phone-call">
-            <table>
-                <tr>
-                    <td><img src="assets/phone/mom.png" class="person-icon"></td>
-                </tr>
-                <tr>
-                    <td id="calling-person-name">Mom</td>
-                </tr>
-                <tr>
-                    <td>Calling...</td>
-                </tr>
-            </table>
-            <div></div>
-        </div>
-        <!------------------------------------------------------------------------------------>
-        <!------------------------------------------------------------------------------------>
-        <!------------------------------------------------------------------------------------>
-        <button class="mobile-phone-text-button" onclick='hidePhone();'>
-            HIDE PHONE
-        </button>
 
-    </div>
-</div>
+            <div id="other-actions">
+                <button type="img" id="mobile-phone-text-button" onclick='takePhone();'>
+                    <img src="assets/phone/phone.png" height="400" style="border-radius: 30px">
+                </button>
+            </div>
+        </td>
+        <td id='game-main-img'>
+        </td>
+        <!----------------------------------------------------------------------------------->
+        <!-----------------------------GAME/LOCATIONS---------------------------------------->
+        <!----------------------------------------------------------------------------------->
+        <td id="next-locations">
+        </td>
+        <!----------------------------------------------------------------------------------->
+        <!-----------------------------GAME INTERACTIONS------------------------------------->
+        <!----------------------------------------------------------------------------------->
+        <td id="location-actions">
+        </td>
+    </tr>
+</table>
+
 <script>
     init();
 </script>

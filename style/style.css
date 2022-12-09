@@ -4,11 +4,13 @@
       medium eggplant: #251533
       stone: #8f7d6f
       black pearl: #171a12
+      almost white green: #e9f6e5
  */
 
 body {
     background-color: #140214;
     color: #8f7d6f;
+    padding: 10px;
 }
 
 button {
@@ -22,9 +24,11 @@ button {
 
 #game-body {
     margin: 20px;
-    display: block;
-    float: left;
 }
 
 #game-description {
+}
+
+#other-actions {
+    float:left;
 }

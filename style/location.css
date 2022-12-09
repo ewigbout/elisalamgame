@@ -1,7 +1,6 @@
-div.location-actions {
+.location-actions {
     margin: 20px;
     display: block;
-    float: left;
 }
 
 img.location-action-img {
