@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Elisa Lam game prototype</title>
+    <title>Elisa game prototype</title>
     <script type="text/javascript" src="javascript/settings.js"></script>
     <script type="text/javascript" src="javascript/time.js"></script>
     <script type="text/javascript" src="javascript/elisa-context.js"></script>
@@ -10,7 +10,10 @@
     <script type="text/javascript" src="javascript/player-context.js"></script>
     <script type="text/javascript" src="javascript/location-actions.js"></script>
     <script type="text/javascript" src="javascript/locations.js"></script>
-    <script type="text/javascript" src="javascript/phone.js"></script>
+    <script type="text/javascript" src="javascript/phone/phone.js"></script>
+    <script type="text/javascript" src="javascript/phone/calling-screen.js"></script>
+    <script type="text/javascript" src="javascript/phone/contacts-screen.js"></script>
+    <script type="text/javascript" src="javascript/phone/numbers-screen.js"></script>
     <script type="text/javascript" src="javascript/debug.js"></script>
     <script type="text/javascript" src="javascript/dialogs.js"></script>
     <script type="text/javascript" src="javascript/story.js"></script>
@@ -22,7 +25,7 @@
     <script>
         function init() {
             takePhone();
-            callMark();
+            incomingCall(window.CONTACTS.MOM);
             goTo(window.AllLocations.HOMEROOM);
             window.PLAYER.STARTTIME = Date.now();
             window.PLAYER.currentRealTime = Date.now();
@@ -103,12 +106,16 @@
                                     <td id="calling-timer"></td>
                                 </tr>
                                 <tr>
-                                    <td align="center">
-                                        <div class="call_button" type="image" id="drop-the-call-contacts" onclick="endCall()">
+                                    <td>
+                                        <div class="call_button" type="image" id="drop-the-call-contacts">
                                             <img src="assets/phone/end_call.png" class="call_button" >
                                         </div>
                                     </td>
-
+                                    <td>
+                                        <div class="call_button" type="image" id="pick-up-the_call-contacts">
+                                            <img src="assets/phone/call.png" class="call_button" >
+                                        </div>
+                                    </td>
                                 </tr>
                             </table>
                             <div></div>
@@ -213,9 +220,16 @@
         </table>
     <div id="dialogs-options"></div>
 </div>
+<!----------------------------------------------------------------------------------->
+<!-----------------------------SOUNDS----------------------------------------------->
+<!----------------------------------------------------------------------------------->
+<div id="sounds">
+    <audio id="beep"></audio>
+</div>
 
 <script>
     init();
+    initPhoneSoundsFromSettings();
 </script>
 </body>
 

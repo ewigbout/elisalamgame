@@ -28,6 +28,12 @@ window.images = {
     }
 }
 
+window.sounds = {
+    phone: {
+        beep: "https://cdn.freesound.org/previews/266/266891_5044043-lq.mp3"
+    }
+}
+
 window.answer_delay_time = 2;
 
 // images from Google Drive

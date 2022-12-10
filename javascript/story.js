@@ -53,7 +53,7 @@
 // }
 
 function callMark() {
-    call(window.CONTACTS.MARK);
+    outgoingCall(window.CONTACTS.MARK);
     window.MARK.callsCount++;
     if (markStrategy() === "IGNORE") {
         endCall();
@@ -114,10 +114,10 @@ function markDialogIteration(mark, elisaOptions) {
 }
 
 function callMom() {
-    call(window.CONTACTS.MARK);
+    callInProgress(window.CONTACTS.MARK);
 }
 
 function callSister() {
-    call(window.CONTACTS.MARK);
+    callInProgress(window.CONTACTS.MARK);
 }
 
